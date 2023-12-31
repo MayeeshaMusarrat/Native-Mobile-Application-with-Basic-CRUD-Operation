@@ -8,6 +8,9 @@ node_modules/
 dist/
 web-build/
 
+# Local env
+backend/env*
+
 # Native
 *.orig.*
 *.jks
@@ -27,9 +30,6 @@ yarn-error.*
 # macOS
 .DS_Store
 *.pem
-
-# local env files
-.env*.local
 
 # typescript
 *.tsbuildinfo
