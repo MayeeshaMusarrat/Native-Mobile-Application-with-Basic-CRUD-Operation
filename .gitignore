@@ -9,7 +9,7 @@ dist/
 web-build/
 
 # Local env
-backend/.env*
+backend/.env
 
 # Native
 *.orig.*
