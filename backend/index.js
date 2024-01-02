@@ -1,10 +1,13 @@
+// index.js
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const authRoutes = require('./routes/authRoutes');
 const { MongoClient } = require('mongodb');
-require('dotenv/config');
-
 const app = express();
+
+require('dotenv/config');
+require("./database");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,31 +19,11 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(authRoutes);
 
-const client = new MongoClient(process.env.DB_URI);
+//? If there's an error somehow, try copypasting the database requirement <right here> 
 
-client.connect()
-    .then(() => {
-        console.log('DB Connected!');
-        const collection = client.db("testerDB").collection("users");
-
-        collection.find({}).toArray()
-            .then((users) => {
-                console.log('Users in the "users" collection:', users);
-            })
-            .catch((err) => {
-                console.error('Error fetching users:', err);
-            })
-            .finally(() => {
-                client.close();
-                console.log('Connection closed');
-            });
-    })
-    .catch((err) => {
-        console.error('DB Connection Error:', err);
-    });
-
-const port = process.env.PORT || 4000;
+const port = process.env.PORT;
 const server = app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
