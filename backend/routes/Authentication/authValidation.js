@@ -4,10 +4,10 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const joi = require('@hapi/joi');
 
-/****
- *  Joi signup and login schemas check the validatiom of the variables.
+/**** 
+ *  Joi signup and login schemas check the validation of the variables.
  *  password field usage method:
- *  const validationResult = signupValidationSchema.validate({ password: 'M@yeesha123!' });
+ *  const validationResult = signupValidationSchema.validate({ username: 'mai', email: 'mai18@gmail.com', password: 'M@yeesha123!' });
         if (validationResult.error) 
         {
         console.error(validationResult.error.message);
@@ -18,7 +18,7 @@ const joi = require('@hapi/joi');
         }
  *****/
 
-const signupValidationSchema = joi.object ({
+const signupValidationForUser= joi.object ({
     username: joi
     .string()
     .min(3)
@@ -41,7 +41,7 @@ const signupValidationSchema = joi.object ({
     .required()
 });
 
-const loginValidationSchema = joi.object({
+const loginValidationForUser = joi.object({
     email: joi
     .string()
     .email()
@@ -52,4 +52,4 @@ const loginValidationSchema = joi.object({
     .required()
 })
 
-module.exports = router;
+module.exports = { signupValidationForUser, loginValidationForUser };

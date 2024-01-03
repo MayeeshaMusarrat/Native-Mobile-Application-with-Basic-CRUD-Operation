@@ -38,7 +38,7 @@
     },
     "owner": "mai_18",
     "runtimeVersion": {
-      "policy": "appVersion"
+      "policy": "sdkVersion"
     },
     "updates": {
       "url": "https://u.expo.dev/0d407dc3-13ba-435d-994b-9043ff7cb733"
