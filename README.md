@@ -3,7 +3,7 @@ React-native project with MongoDB Atlas Cloud Database
 File hierarchy explained: 
 
 **1. Backend** <br>
-     <tab> </tab> 1.1 middleware <br>
+     <pre> 1.1 middleware <br>
           * jwt token verification and extract payload <br>
      1.2 models <br>
           * contains mongoose schema <br>
