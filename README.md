@@ -11,11 +11,13 @@ File hierarchy explained:
           * contains backend APIs <br>
      1.4 utils <br>
           * contains function modules such as hash generating module, verification module etc.<br>
+     </pre>
 <br>
 **2. Frontend** <br>
-      1.1 reducers <br>
+     <pre> 1.1 reducers <br>
           * redux functions for state managemnet<br>
       1.2 components <br>
           * contains re-usable UI components<br>
       1.3 screens<br>
           * contain primary UI stacks<br>
+     </pre>
