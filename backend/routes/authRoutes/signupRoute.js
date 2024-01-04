@@ -1,23 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/user.model');
-const { loginValidationForUser } = require('./authValidation/loginValidationForUser');
-const { signupValidationForUser } = require('./authValidation/signupValidationForUser');
-const { generateHashPasswordForUser } = require('./hashPasswords/generateHashPassword');
-const { compareHashPasswordOfUser } = require('./hashPasswords/compareHashPassword');
+const { signupValidationForUser } = require('../../utils/AuthenticationUtil/authValidation/signupValidationForUser');
+const { generateHashPasswordForUser } = require('../../utils/AuthenticationUtil/hashPasswords/generateHashPassword');
 
 /**** 
  *  Joi signup and login schemas check the validation of the variables.
  *  password field usage method:
  *  const validationResult = signupValidationSchema.validate({ username: 'mai', email: 'mai18@gmail.com', password: 'M@yeesha123!' });
-        if (validationResult.error) 
-        {
-        console.error(validationResult.error.message);
-        } 
-        else 
-        {
-        console.log('Password is valid!');
-        }
  *****/
 
 router.route ('/signup').post(async (req,res) => {
@@ -58,4 +48,4 @@ router.route ('/signup').post(async (req,res) => {
 })
 
 
-module.exports = router
+module.exports = router;

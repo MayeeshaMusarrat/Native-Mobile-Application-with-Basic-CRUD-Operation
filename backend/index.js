@@ -2,7 +2,9 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const authRoutes = require('./routes/Authentication/authRoutes');
+const loginRoute = require('./routes/authRoutes/loginRoute');
+const signupRoute = require('./routes/authRoutes/signupRoute');
+const requireToken = require('./middleware/authMiddleware');
 const { MongoClient } = require('mongodb');
 const app = express();
 
@@ -19,9 +21,16 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(authRoutes);
+app.use('/signup', signupRoute);
+app.use('/login', loginRoute);
 
-//? If there's an error somehow, try copypasting the database requirement <right here> 
+/** Auth Middleware will run to check for a valid authentication token in the request header
+  * Protected Route '/'
+**/
+app.get('/', requireToken, (req, res) => {
+    console.log(req.user);
+    res.send(req.user);
+})
 
 const port = process.env.PORT;
 const server = app.listen(port, () => {
