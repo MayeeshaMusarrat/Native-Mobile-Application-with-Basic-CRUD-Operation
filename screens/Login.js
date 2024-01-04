@@ -1,297 +1,242 @@
 import * as React from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-} from "react-native";
+import { View, TextInput, StyleSheet, Text, Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
-import FooterMain from "../components/FooterMain";
 import { useNavigation } from "@react-navigation/native";
-import Logo from "../components/Logo";
-import EmailField from "../components/EmailField";
-import { FontFamily, FontSize, Color, Border } from "../GlobalStyles";
+import { Padding, FontFamily, FontSize, Color, Border } from "../GlobalStyles";
 
 const Login = () => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.login}>
-      <LinearGradient
-        style={styles.backgroundImage}
-        locations={[0, 1]}
-        colors={["#240b48", "rgba(49, 15, 92, 0)"]}
-      >
-        <ImageBackground
-          style={styles.icon}
-          resizeMode="cover"
-          source={require("../assets/backgroundimage.png")}
+      <View style={styles.inputfields}>
+        <TextInput
+          style={[styles.username, styles.emailSpaceBlock]}
+          placeholder="Email"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          color = "white"
+          placeholderTextColor="white"
         />
-      </LinearGradient>
-      <View style={[styles.footer, styles.footerLayout]}>
-        <View style={[styles.copyright, styles.footerLayout]}>
-          <Text style={[styles.copyrightByTester, styles.login1Typo]}>
-            Copyright by TESTER
-          </Text>
-        </View>
-        <FooterMain
-          continueWithGoogleAndFbPosition="absolute"
-          continueWithGoogleAndFbTop={-146}
-          continueWithGoogleAndFbLeft={32}
+        <TextInput
+          style={[styles.email, styles.emailSpaceBlock]}
+          placeholder="Password"
+          color = "white"
+          placeholderTextColor="white"
         />
       </View>
-      <View style={styles.dologin}>
-        <View style={styles.loginbuttonPosition}>
+      <View style={[styles.loginWrapper, styles.headerFlexBox]}>
+        <Text style={[styles.login1, styles.textTypo]}>LOGIN</Text>
+      </View>
+      <View style={[styles.dologin, styles.headerFlexBox]}>
+        <View style={styles.loginbuttonLayout}>
           <LinearGradient
-            style={[styles.loginrectangle, styles.loginbuttonPosition]}
+            style={[styles.loginrectangle, styles.headerPosition]}
             locations={[0, 1]}
             colors={["#501794", "#3e70a1"]}
           />
-          <Text style={[styles.login1, styles.login1Typo]}>Login</Text>
+          <Text style={styles.login2}>Login</Text>
         </View>
         <Image
-          style={[styles.seperatorIcon, styles.lockiconLayout]}
+          style={styles.seperatorIcon}
           contentFit="cover"
           source={require("../assets/seperator.png")}
         />
       </View>
-      <Text style={[styles.login2, styles.textTypo]}>LOGIN</Text>
-      <LinearGradient
-        style={styles.header}
-        locations={[0, 1]}
-        colors={["#000", "rgba(0, 0, 0, 0)"]}
-      />
-      <View style={styles.header1}>
+      <View style={[styles.header, styles.headerPosition]}>
+        <View style={styles.logo}>
+          <View style={styles.titleParent}>
+            <Text style={[styles.title, styles.titlePosition]}>Tester..</Text>
+            <Text style={styles.title1}>LOGIN</Text>
+          </View>
+          <Image
+            style={[styles.logoIcon, styles.titlePosition]}
+            contentFit="cover"
+            source={require("../assets/logo.png")}
+          />
+        </View>
         <Pressable
           style={styles.dosignuptext}
           onPress={() => navigation.navigate("Signup")}
         >
           <Text style={[styles.text, styles.textTypo]}>
-            <Text style={styles.dontHaveAn}>DON’T HAVE AN ACCOUNT?</Text>
-            <Text style={styles.signUp}> SIGN UP</Text>
+            <Text style={styles.haveAnAccount}>HAVE AN ACCOUNT?</Text>
+            <Text style={styles.login3}> LOGIN</Text>
           </Text>
         </Pressable>
-        <Logo
-          logoPosition="absolute"
-          logoWidth="25.64%"
-          logoHeight="100%"
-          logoTop="0%"
-          logoRight="74.36%"
-          logoBottom="0%"
-          logoLeft="0%"
-        />
-      </View>
-      <View style={[styles.inputfields, styles.login2Position]}>
-        <EmailField
-          emailInputLabel="Login with email address"
-          propPosition="relative"
-          propTop="unset"
-          propLeft="-3%"
-        />
-        <View style={styles.password}>
-          <View style={[styles.passwordinput, styles.passwordinputLayout]}>
-            <Image
-              style={[styles.passwordboxIcon, styles.passwordinputLayout]}
-              contentFit="cover"
-              source={require("../assets/email.png")}
-            />
-            <Text style={styles.yourPassword}>Your Password</Text>
-            <Image
-              style={[styles.lockicon, styles.lockiconLayout]}
-              contentFit="cover"
-              source={require("../assets/vector.png")}
-            />
-          </View>
-          <Text style={[styles.enterpassword, styles.textTypo]}>
-            Enter Password
-          </Text>
-        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  footerLayout: {
-    height: 17,
-    width: 436,
-    left: 0,
-    position: "absolute",
+  emailSpaceBlock: {
+    paddingBottom: Padding.p_3xs,
+    paddingTop: Padding.p_3xs,
   },
-  login1Typo: {
-    textAlign: "center",
-    fontFamily: FontFamily.poppinsMedium,
-    fontWeight: "500",
-    position: "absolute",
-  },
-  loginbuttonPosition: {
-    height: 50,
-    width: 367,
-    left: 0,
-    top: 0,
-    position: "absolute",
-  },
-  lockiconLayout: {
-    maxHeight: "100%",
-    position: "absolute",
+  headerFlexBox: {
+    alignItems: "center",
+    flexDirection: "row",
+    width: 294,
   },
   textTypo: {
     fontFamily: FontFamily.poppinsBold,
     fontWeight: "700",
     textAlign: "left",
   },
-  login2Position: {
-    flex:1,
-    left: "9%",
+  headerPosition: {
+    top: 0,
     position: "absolute",
   },
-  passwordinputLayout: {
-    height: 55,
-    width: 367,
+  titlePosition: {
+    left: "0%",
+    position: "absolute",
+  },
+  username: {
+    paddingRight: Padding.p_3xs,
+    paddingLeft: Padding.p_9xl,
+    width: 294,
+    paddingBottom: Padding.p_3xs,
+    paddingTop: Padding.p_3xs,
+  },
+  email: {
+    marginTop: 8,
+    paddingRight: Padding.p_3xs,
+    paddingLeft: Padding.p_9xl,
+    width: 294,
+    paddingBottom: Padding.p_3xs,
+    paddingTop: Padding.p_3xs,
+  },
+  inputfields: {
+    top: 229,
     left: 0,
     position: "absolute",
   },
-  icon: {
-    height: "100%",
-    backgroundColor: "transparent",
-    width: "100%",
+  login1: {
+    fontSize: FontSize.size_21xl,
+    textAlign: "left",
+    color: Color.colorWhite,
   },
-  backgroundImage: {
-    left: -420,
-    width: 857,
-    height: 571,
-    top: 0,
+  loginWrapper: {
+    top: 143,
+    paddingLeft: Padding.p_8xl,
+    paddingRight: Padding.p_84xl,
+    paddingBottom: Padding.p_3xs,
+    paddingTop: Padding.p_3xs,
+    flexDirection: "row",
+    left: 0,
     position: "absolute",
-  },
-  copyrightByTester: {
-    top: "0%",
-    left: "0%",
-    fontSize: FontSize.size_xs_3,
-    textTransform: "uppercase",
-    color: Color.colorDarkslateblue,
-    width: "100%",
-  },
-  copyright: {
-    top: 0,
-  },
-  footer: {
-    top: 897,
   },
   loginrectangle: {
     borderRadius: Border.br_mini,
     backgroundColor: "transparent",
-  },
-  login1: {
-    top: 12,
-    left: 6,
-    fontSize: FontSize.size_mid_9,
-    width: 361,
-    color: Color.colorWhite,
-  },
-  seperatorIcon: {
-    top: 83,
-    width: 367,
+    height: 50,
+    width: 237,
     left: 0,
   },
-  dologin: {
-    top: 651,
-    left: 29,
-    height: 83,
-    width: 367,
-    position: "absolute",
-  },
   login2: {
-    top: 301,
-    fontSize: FontSize.size_43xl,
-    textAlign: "left",
-    left: 32,
-    position: "absolute",
+    top: 12,
+    left: 4,
+    fontSize: FontSize.size_mid_9,
+    fontWeight: "500",
+    fontFamily: FontFamily.poppinsMedium,
+    textAlign: "center",
+    width: 233,
     color: Color.colorWhite,
-  },
-  header: {
-    left: -49,
-    width: 601,
-    height: 134,
-    backgroundColor: "transparent",
-    top: 0,
     position: "absolute",
   },
-  dontHaveAn: {
+  loginbuttonLayout: {
+    height: 50,
+    width: 237,
+  },
+  seperatorIcon: {
+    width: 228,
+    marginLeft: 33,
+    maxHeight: "100%",
+  },
+  dologin: {
+    top: 377,
+    flexWrap: "wrap",
+    justifyContent: "center",
+    paddingLeft: Padding.p_12xl,
+    paddingRight: Padding.p_7xl,
+    left: 0,
+    position: "absolute",
+  },
+  title: {
+    fontSize: FontSize.size_mid,
+    top: "0%",
+    textAlign: "left",
+    color: Color.colorWhite,
+    fontFamily: FontFamily.poppinsBold,
+    fontWeight: "700",
+  },
+  title1: {
+    top: "64.52%",
+    left: "36.31%",
+    fontSize: FontSize.size_6xs,
+    letterSpacing: 4.2,
+    textTransform: "uppercase",
+    fontFamily: FontFamily.poppinsRegular,
+    textAlign: "left",
+    color: Color.colorWhite,
+    position: "absolute",
+  },
+  titleParent: {
+    height: "100%",
+    width: "71.59%",
+    right: "-1.54%",
+    bottom: "0%",
+    left: "29.96%",
+    top: "0%",
+    position: "absolute",
+  },
+  logoIcon: {
+    height: "65.48%",
+    width: "18.17%",
+    top: "16.13%",
+    right: "81.83%",
+    bottom: "18.39%",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    overflow: "hidden",
+  },
+  logo: {
+    width: 91,
+    height: 31,
+  },
+  haveAnAccount: {
     color: Color.colorSilver,
   },
-  signUp: {
+  login3: {
     color: Color.colorWhite,
   },
   text: {
-    fontSize: FontSize.size_3xs,
-    letterSpacing: 0.8,
+    fontSize: FontSize.size_5xs,
+    letterSpacing: 0.6,
+    width: 149,
     textAlign: "left",
   },
   dosignuptext: {
-    left: "48.21%",
-    top: "19.35%",
-    position: "absolute",
+    marginLeft: 40,
   },
-  header1: {
-    top: 20,
-    left: 27,
-    width: 390,
-    height: 31,
-    position: "absolute",
-  },
-  passwordboxIcon: {
-    top: 0,
-  },
-  yourPassword: {
-    top: 17,
-    left: 52,
-    fontSize: FontSize.size_smi,
-    color: Color.colorDarkgray,
-    width: 196,
-    textAlign: "left",
-    fontFamily: FontFamily.poppinsMedium,
-    fontWeight: "500",
-    position: "absolute",
-  },
-  lockicon: {
-    height: "34.55%",
-    width: "4.09%",
-    top: "30.91%",
-    right: "89.65%",
-    bottom: "34.55%",
-    left: "6.27%",
-    maxWidth: "100%",
-    overflow: "hidden",
-  },
-  passwordinput: {
-    top: 32,
-  },
-  enterpassword: {
-    fontSize: FontSize.size_xs,
-    textAlign: "left",
-    color: Color.colorWhite,
-    left: 0,
-    top: 0,
-    position: "absolute",
-  },
-  password: {
-    height: 87,
-    marginTop: 22,
-    width: 367,
-  },
-  inputfields: {
-    top: 419,
+  header: {
+    left: 2,
+    height: 93,
+    paddingLeft: 14,
+    paddingTop: Padding.p_xs,
+    paddingRight: 20,
     alignItems: "center",
-    justifyContent: "center",
+    flexDirection: "row",
+    width: 350,
   },
   login: {
     backgroundColor: Color.colorMidnightblue,
     flex: 1,
-    height: 932,
-    overflow: "visible",
     width: "100%",
+    height: 800,
+    overflow: "hidden",
   },
 });
 

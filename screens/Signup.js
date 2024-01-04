@@ -1,371 +1,258 @@
 import * as React from "react";
-import { Image } from "expo-image";
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { View, TextInput, StyleSheet, Text, Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
-import InputFields from "../components/InputFields";
-import { FontFamily, FontSize, Color, Border } from "../GlobalStyles";
+import { Padding, FontFamily, FontSize, Color, Border } from "../GlobalStyles";
 
 const Signup = () => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.signup}>
-      <Image
-        style={styles.backgroundImageIcon}
-        contentFit="cover"
-        source={require("../assets/background-image.png")}
-      />
-      <View style={[styles.footer, styles.footerPosition]}>
-        <Text style={[styles.copyrightByTester, styles.signUpTypo]}>
-          Copyright by TESTER
-        </Text>
-      </View>
-      <View style={[styles.group, styles.groupLayout]}>
-        <View style={styles.continueWith}>
-          <Text style={styles.orContinueWith}>Or continue with</Text>
-        </View>
-        <View style={styles.terms}>
-          <Text style={[styles.byRegisteringYouContainer, styles.signUpTypo]}>
-            <Text
-              style={styles.byRegisteringYou}
-            >{`By registering you with our `}</Text>
-            <Text style={styles.termsAndConditions}>Terms and Conditions</Text>
-          </Text>
-        </View>
-        <View style={[styles.buttons, styles.buttonsLayout]}>
-          <Image
-            style={[styles.cardIcon, styles.buttonsLayout]}
-            contentFit="cover"
-            source={require("../assets/card.png")}
-          />
-          <View style={styles.buttonsInner}>
-            <View style={[styles.groupParent, styles.groupFlexBox]}>
-              <Image
-                style={styles.frameChild}
-                contentFit="cover"
-                source={require("../assets/group-1431.png")}
-              />
-              <Text style={[styles.facebook, styles.googleTypo]}>Facebook</Text>
-            </View>
-          </View>
-        </View>
-        <View style={[styles.buttons1, styles.buttonsLayout]}>
-          <Image
-            style={[styles.cardIcon, styles.buttonsLayout]}
-            contentFit="cover"
-            source={require("../assets/card.png")}
-          />
-          <View style={[styles.groupContainer, styles.groupFlexBox]}>
-            <Image
-              style={styles.frameItem}
-              contentFit="cover"
-              source={require("../assets/group-1432.png")}
-            />
-            <Text style={[styles.google, styles.googleTypo]}>Google</Text>
-          </View>
-        </View>
-      </View>
-      <Text style={[styles.signup1, styles.textTypo]}>SIGN UP</Text>
-      <LinearGradient
-        style={styles.headerFade}
-        locations={[0, 1]}
-        colors={["#000", "rgba(0, 0, 0, 0)"]}
-      />
-      <Pressable
-        style={styles.dologintext}
-        onPress={() => navigation.navigate("Login")}
-      >
-        <Text style={[styles.text, styles.textTypo]}>
-          <Text style={styles.byRegisteringYou}>HAVE AN ACCOUNT?</Text>
-          <Text style={styles.login}> LOGIN</Text>
-        </Text>
-      </Pressable>
-      <View style={[styles.logo, styles.logoPosition]}>
-        <View style={[styles.titleParent, styles.signUpLayout]}>
-          <Text style={[styles.title, styles.textTypo]}>{`Tester.. `}</Text>
-          <Text style={[styles.title1, styles.logoPosition]}>Memon</Text>
-        </View>
-        <Image
-          style={styles.logoIcon}
-          contentFit="cover"
-          source={require("../assets/logo.png")}
+      <View style={[styles.inputfields, styles.dologinPosition]}>
+        <TextInput
+          style={[styles.username, styles.emailSpaceBlock]}
+          placeholder="username"
+          autoCapitalize="none"
+          placeholderTextColor="white"
+          color="white"
+        />
+        <TextInput
+          style={[styles.email, styles.emailSpaceBlock]}
+          placeholder="Email"
+          keyboardType="email-address"
+          placeholderTextColor="white"
+          color="white"
+        />
+        <TextInput
+          style={[styles.email, styles.emailSpaceBlock]}
+          placeholder="Password"
+          keyboardType="default"
+          autoCapitalize="none"
+          placeholderTextColor="white"
+          color="white"
+        />
+        <TextInput
+          style={[styles.email, styles.emailSpaceBlock]}
+          placeholder="Confirm Password"
+          placeholderTextColor="white"
+          color="white"
         />
       </View>
-      <InputFields />
-      <View style={[styles.dosignup, styles.groupLayout]}>
-        <View style={styles.signupPosition}>
+      <View style={[styles.loginWrapper, styles.headerFlexBox]}>
+        <Text style={[styles.login, styles.textTypo]}>SIGN UP</Text>
+      </View>
+      <View style={[styles.dologin, styles.headerFlexBox]}>
+        <View style={styles.loginbuttonLayout}>
           <LinearGradient
-            style={[styles.signupButtonChild, styles.signupPosition]}
+            style={[styles.loginrectangle, styles.headerPosition]}
             locations={[0, 1]}
             colors={["#501794", "#3e70a1"]}
           />
-          <Text style={[styles.signUp, styles.signUpLayout]}>Sign up</Text>
+          <Text style={styles.signUp}>Sign Up</Text>
         </View>
         <Image
-          style={[styles.seperatorIcon, styles.groupLayout]}
+          style={styles.seperatorIcon}
           contentFit="cover"
           source={require("../assets/seperator.png")}
         />
+      </View>
+      <View style={[styles.header, styles.headerPosition]}>
+        <View style={styles.logo}>
+          <View style={styles.titleParent}>
+            <Text style={[styles.title, styles.titlePosition]}>Tester..</Text>
+            <Text style={styles.title1}>LOGIN</Text>
+          </View>
+          <Image
+            style={[styles.logoIcon, styles.titlePosition]}
+            contentFit="cover"
+            source={require("../assets/logo.png")}
+          />
+        </View>
+        <Pressable
+          style={styles.dosignuptext}
+          onPress={() => navigation.navigate("Login")}
+        >
+          <Text style={[styles.text, styles.textTypo]}>
+            <Text style={styles.dontHaveAn}>DON’T HAVE AN ACCOUNT?</Text>
+            <Text style={styles.signUp1}> SIGN UP</Text>
+          </Text>
+        </Pressable>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  footerPosition: {
-    width: 436,
+  dologinPosition: {
     left: 0,
     position: "absolute",
   },
-  signUpTypo: {
-    fontFamily: FontFamily.poppinsMedium,
-    fontWeight: "500",
+  emailSpaceBlock: {
+    paddingBottom: Padding.p_3xs,
+    paddingTop: Padding.p_3xs,
   },
-  groupLayout: {
-    width: 367,
-    position: "absolute",
-  },
-  buttonsLayout: {
-    height: 36,
-    width: 180,
-    position: "absolute",
-  },
-  groupFlexBox: {
-    justifyContent: "center",
+  headerFlexBox: {
+    alignItems: "center",
     flexDirection: "row",
-    position: "absolute",
-  },
-  googleTypo: {
-    fontSize: FontSize.size_xs,
-    color: Color.colorWhite,
-    textAlign: "left",
-    fontFamily: FontFamily.poppinsSemiBold,
-    fontWeight: "600",
+    width: 294,
   },
   textTypo: {
     fontFamily: FontFamily.poppinsBold,
     fontWeight: "700",
     textAlign: "left",
   },
-  logoPosition: {
-    top: 20,
-    position: "absolute",
-  },
-  signUpLayout: {
-    width: 70,
-    position: "absolute",
-  },
-  signupPosition: {
-    height: 50,
-    width: 367,
-    left: 0,
+  headerPosition: {
     top: 0,
-    position: "absolute",
-  },
-  backgroundImageIcon: {
-    left: -420,
-    width: 857,
-    height: 571,
-    top: 0,
-    position: "absolute",
-  },
-  copyrightByTester: {
-    fontSize: FontSize.size_xs_3,
-    color: Color.colorDarkslateblue,
-    textAlign: "center",
-    textTransform: "uppercase",
-    width: 436,
-    left: 0,
-    position: "absolute",
-    top: 0,
-  },
-  footer: {
-    top: 897,
-    height: 17,
-  },
-  orContinueWith: {
-    textAlign: "left",
-    color: Color.colorSilver,
-    fontFamily: FontFamily.poppinsSemiBold,
-    fontWeight: "600",
-    fontSize: FontSize.size_3xs,
-    left: 0,
-    top: 0,
-    position: "absolute",
-  },
-  continueWith: {
-    width: 84,
-    height: 15,
-    left: 0,
-    top: 0,
-    position: "absolute",
-  },
-  byRegisteringYou: {
-    color: Color.colorSilver,
-  },
-  termsAndConditions: {
-    color: Color.colorMediumslateblue,
-  },
-  byRegisteringYouContainer: {
-    textAlign: "left",
-    fontSize: FontSize.size_3xs,
-    left: 0,
-    top: 0,
-    position: "absolute",
-  },
-  terms: {
-    top: 82,
-    width: 248,
-    height: 15,
     left: 0,
     position: "absolute",
   },
-  cardIcon: {
-    left: 0,
-    top: 0,
-  },
-  frameChild: {
-    width: 18,
-    height: 18,
-  },
-  facebook: {
-    width: 60,
-    marginLeft: 8,
-    color: Color.colorWhite,
-    height: 15,
-  },
-  groupParent: {
-    left: 0,
-    top: 0,
-  },
-  buttonsInner: {
-    top: 9,
-    left: 47,
-    width: 86,
-    height: 18,
+  titlePosition: {
+    left: "0%",
     position: "absolute",
   },
-  buttons: {
-    left: 187,
-    top: 28,
-    height: 36,
-    width: 180,
+  username: {
+    paddingRight: Padding.p_3xs,
+    paddingLeft: Padding.p_9xl,
+    width: 294,
+    paddingBottom: Padding.p_3xs,
+    paddingTop: Padding.p_3xs,
   },
-  frameItem: {
-    width: 15,
-    height: 16,
-  },
-  google: {
-    marginLeft: 10,
+  email: {
+    marginTop: 8,
+    paddingRight: Padding.p_3xs,
+    paddingLeft: Padding.p_9xl,
+    width: 294,
+    paddingBottom: Padding.p_3xs,
+    paddingTop: Padding.p_3xs,
     color: Color.colorWhite,
   },
-  groupContainer: {
-    top: 10,
-    left: 49,
-    width: 83,
-    alignItems: "center",
-    height: 16,
-  },
-  buttons1: {
-    top: 28,
-    height: 36,
-    width: 180,
-    left: 0,
-  },
-  group: {
-    top: 770,
-    height: 97,
-    left: 32,
-  },
-  signup1: {
-    top: 91,
-    fontSize: FontSize.size_43xl,
-    color: Color.colorWhite,
-    left: 32,
-    position: "absolute",
-  },
-  headerFade: {
-    left: -49,
-    width: 601,
-    height: 134,
-    backgroundColor: "transparent",
-    top: 0,
-    position: "absolute",
+  inputfields: {
+    top: 190,
   },
   login: {
+    fontSize: FontSize.size_21xl,
+    textAlign: "left",
     color: Color.colorWhite,
   },
-  text: {
-    letterSpacing: 0.8,
-    fontSize: FontSize.size_3xs,
+  loginWrapper: {
+    top: 102,
+    paddingLeft: Padding.p_8xl,
+    paddingRight: Padding.p_84xl,
+    paddingBottom: Padding.p_3xs,
+    paddingTop: Padding.p_3xs,
+    flexDirection: "row",
+    left: 0,
+    position: "absolute",
   },
-  dologintext: {
-    left: 251,
-    top: 26,
+  loginrectangle: {
+    borderRadius: Border.br_mini,
+    backgroundColor: "transparent",
+    height: 50,
+    width: 237,
+  },
+  signUp: {
+    top: 12,
+    left: 4,
+    fontSize: 20,
+    fontWeight: "500",
+    fontFamily: FontFamily.poppinsMedium,
+    textAlign: "center",
+    width: 250,
+    color: Color.colorWhite,
+    position: "absolute",
+  },
+  loginbuttonLayout: {
+    height: 50,
+    width: 237,
+  },
+  seperatorIcon: {
+    width: 228,
+    marginLeft: 33,
+    maxHeight: "100%",
+  },
+  dologin: {
+    top: 459,
+    flexWrap: "wrap",
+    justifyContent: "center",
+    paddingLeft: Padding.p_12xl,
+    paddingRight: Padding.p_7xl,
+    left: 0,
     position: "absolute",
   },
   title: {
     fontSize: FontSize.size_mid,
+    top: "0%",
+    textAlign: "left",
     color: Color.colorWhite,
-    left: 0,
-    top: 0,
-    position: "absolute",
+    fontFamily: FontFamily.poppinsBold,
+    fontWeight: "700",
   },
   title1: {
-    left: 26,
+    top: "64.52%",
+    left: "36.31%",
     fontSize: FontSize.size_6xs,
     letterSpacing: 4.2,
-    fontFamily: FontFamily.poppinsRegular,
-    color: Color.colorWhite,
-    textAlign: "left",
     textTransform: "uppercase",
-  },
-  titleParent: {
-    left: 30,
-    height: 31,
-    top: 0,
-  },
-  logoIcon: {
-    top: 5,
-    height: 20,
-    width: 18,
-    left: 0,
+    fontFamily: FontFamily.poppinsRegular,
+    textAlign: "left",
+    color: Color.colorWhite,
     position: "absolute",
   },
+  titleParent: {
+    height: "100%",
+    width: "71.59%",
+    right: "-1.54%",
+    bottom: "0%",
+    left: "29.96%",
+    top: "0%",
+    position: "absolute",
+  },
+  logoIcon: {
+    height: "65.48%",
+    width: "18.17%",
+    top: "16.13%",
+    right: "81.83%",
+    bottom: "18.39%",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    overflow: "hidden",
+  },
   logo: {
-    left: 27,
-    width: 100,
+    width: 91,
     height: 31,
   },
-  signupButtonChild: {
-    borderRadius: Border.br_mini,
-    backgroundColor: "transparent",
+  dontHaveAn: {
+    color: Color.colorSilver,
   },
-  signUp: {
-    top: 12,
-    left: 148,
-    fontSize: FontSize.size_mid_9,
+  signUp1: {
     color: Color.colorWhite,
+    
+  },
+  text: {
+    fontSize: FontSize.size_5xs,
+    letterSpacing: 0.6,
+    width: 165,
     textAlign: "left",
-    fontFamily: FontFamily.poppinsMedium,
-    fontWeight: "500",
   },
-  seperatorIcon: {
-    top: 83,
-    maxHeight: "100%",
-    left: 0,
+  dosignuptext: {
+    marginLeft: 12,
   },
-  dosignup: {
-    top: 666,
-    height: 83,
-    left: 32,
+  header: {
+    height: 93,
+    paddingLeft: 17,
+    paddingTop: Padding.p_xs,
+    paddingRight: Padding.p_6xs,
+    alignItems: "center",
+    flexDirection: "row",
+    width: 294,
   },
   signup: {
     backgroundColor: Color.colorMidnightblue,
     flex: 1,
     width: "100%",
-    height: 932,
+    height: 613,
     overflow: "hidden",
   },
 });
