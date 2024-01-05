@@ -1,5 +1,6 @@
-React-native project with MongoDB Atlas Cloud Database
 
+React-native project with MongoDB Atlas Cloud Database
+//stuff
 File hierarchy explained: 
 
 **1. Backend** <br>
