@@ -10,9 +10,12 @@ const { generateHashPasswordForUser } = require('../../utils/AuthenticationUtil/
  *  const validationResult = signupValidationSchema.validate({ username: 'mai', email: 'mai18@gmail.com', password: 'M@yeesha123!' });
  *****/
 
-router.route ('/signup').post(async (req,res) => {
+router.route('/signup').post(async (req,res) => {
     
     const { username, email, password } = req.body;
+    console.log("received values: ", req.body);
+
+    /*
     try 
     {
         const validateUserData = signupValidationForUser({ username, email, password });
@@ -45,6 +48,7 @@ router.route ('/signup').post(async (req,res) => {
     .catch(error => {
         res.status(400).json({ error: err.message });
     })
+    */
 })
 
 

@@ -12,17 +12,13 @@ import { Button } from "react-native";
 
 const Login = () => {
 
-    const [user, setUser] = React.useState({
-        email: "",
-        password: ""
-    });
-    const { email, password } = user;
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
 
     const loginHandler = () => {
         const loginData = {
-            email: "email",
-          password: "password",
-         
+          email: email,
+          password: password,
         };
 
         console.log("LoginData = ", loginData);
@@ -32,9 +28,8 @@ const Login = () => {
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json',
-              // Add any additional headers if needed
             },
-            credentials: 'include', // Include credentials for CORS
+            credentials: 'include', 
             body: JSON.stringify(loginData),
           })
           .then(response => {
@@ -45,17 +40,13 @@ const Login = () => {
         })
         .then(data => {
             console.log('Login response:', data);
-            // Handle the successful login response
         })
         .catch(error => {
             console.error('Error during login:', error);
-            // Handle the error (e.g., display an error message to the user)
         });
         
       };
       
-
-
   return (
     <View style={styles.login}>
       <LinearGradient
@@ -162,9 +153,7 @@ const Login = () => {
           placeholderTextColor={"lightgray"}
           underlineColorAndroid={"lightgray"}
           value = {email}
-          onChange={ (e) =>
-            setUser({ ...user, email: e.target.value })
-          }
+          onChangeText={(text) => setEmail(text)}
         />
         <TextInput
           style={[styles.email, styles.emailSpaceBlock]}
@@ -173,9 +162,8 @@ const Login = () => {
           placeholderTextColor={"lightgray"}
           underlineColorAndroid={"lightgray"}
           value = {password}
-          onChange={ (e) =>
-            setUser({ ...user, password: e.target.value })
-          }
+          onChangeText = {(text) => setPassword(text)}
+          secureTextEntry = {true}
         />
       </View>
 
