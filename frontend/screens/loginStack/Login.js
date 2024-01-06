@@ -15,37 +15,37 @@ const Login = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
-    const loginHandler = () => {
+    const loginHandler = async () => {
+      try {
         const loginData = {
           email: email,
           password: password,
         };
-
+    
         console.log("LoginData = ", loginData);
-      
-        fetch('http://localhost:4000/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-            },
-            credentials: 'include', 
-            body: JSON.stringify(loginData),
-          })
-          .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Login response:', data);
-        })
-        .catch(error => {
-            console.error('Error during login:', error);
+    
+        const response = await fetch('http://192.168.0.111:5000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify(loginData),
         });
-        
-      };
+         console.log("func works");
+        if (!response.ok) {
+         
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+    
+        const data = await response.json();
+        console.log('Login response:', data);
+      } catch (error) {
+        console.error('Error during login:', error);
+      }
+    };
+    
       
   return (
     <View style={styles.login}>
