@@ -15,16 +15,14 @@ const Login = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
+    /*** Object is sent to backend, fetch API works *****/
     const loginHandler = async () => {
       try {
         const loginData = {
           email: email,
           password: password,
         };
-    
-        console.log("LoginData = ", loginData);
-    
-        const response = await fetch('http://192.168.0.111:5000/login', {
+        const response = await fetch('http://192.168.0.106:5000/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -33,12 +31,9 @@ const Login = () => {
           credentials: 'include',
           body: JSON.stringify(loginData),
         });
-         console.log("func works");
         if (!response.ok) {
-         
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-    
         const data = await response.json();
         console.log('Login response:', data);
       } catch (error) {
