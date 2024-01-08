@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-navigation/native-stack": "^6.9.17",
+    "axios": "^1.6.5",
     "cors": "^2.8.5",
     "expo": "~49.0.15",
     "expo-cli": "^6.3.10",

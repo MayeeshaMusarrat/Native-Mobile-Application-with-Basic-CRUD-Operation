@@ -32,14 +32,16 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      
+      "eas": {
+        "projectId": "5b70bf9a-efff-41ec-bd0a-3932e23d46bf"
+      }
     },
-    "owner": "mai_18",
+    "owner": "sdp-ii",
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/0d407dc3-13ba-435d-994b-9043ff7cb733"
+      "url": "https://u.expo.dev/5b70bf9a-efff-41ec-bd0a-3932e23d46bf"
     }
   }
 }

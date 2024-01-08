@@ -11,6 +11,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
 import styles from '../styles/signupStyles';
 import { FontFamily, FontSize, Color, Padding, Border } from ".../../../GlobalStyles";
+import axios from 'axios';
 
 const Signup = () => {
   
@@ -26,26 +27,20 @@ const Signup = () => {
         email: email,
         password: password,
       };
-      const response = await fetch('http://192.168.0.106:5000/signup', {
-        method: 'POST',
+      const response = await axios.post('http://192.168.0.106:5000/signup', signupData, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        credentials: 'include',
-        body: JSON.stringify(signupData),
+        withCredentials: true,
       });
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      console.log('Signup response:', data);
+  
+      console.log('Signup response:', response.data);
     } catch (error) {
       console.error('Error during signup:', error);
     }
   };
   
-
   return (
     <View style={styles.signup}>
       <LinearGradient

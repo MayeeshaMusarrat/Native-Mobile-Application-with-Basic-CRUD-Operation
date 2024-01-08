@@ -43,10 +43,11 @@ router.post('/', async (req, res) => {
 
         // Save newUser data to the database
         const savedUser = await newUser.save();
-        const token = webToken.sign({ _id: newUser._id }, process.env.JWT_SECRET_KEY);
+       
+       /* const token = webToken.sign({ _id: newUser._id }, process.env.JWT_SECRET_KEY);*/
 
         console.log("New user has been added:", savedUser);
-        res.status(200).json({ message: 'User successfully inserted', user: savedUser, token });
+        res.status(200).json({ message: 'User successfully inserted', user: savedUser });
     }
     catch (error) 
     {
