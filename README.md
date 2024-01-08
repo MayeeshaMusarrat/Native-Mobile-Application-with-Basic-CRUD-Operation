@@ -15,6 +15,7 @@ File hierarchy explained:
           * contains function modules such as hash generating module, verification module etc.<br>
      </pre>
 <br>
+<br>
 **2. Frontend** <br>
      <pre> 1.1 reducers <br>
           * redux functions for state managemnet<br>
