@@ -5,40 +5,25 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
 import styles from '../styles/signupStyles';
 import { FontFamily, FontSize, Color, Padding, Border } from ".../../../GlobalStyles";
 import axios from 'axios';
+import { observer } from 'mobx-react-lite';
+import { useLocalStore } from 'mobx-react';
+import rootStore from "../../stores/RootStore";
 
-const Signup = () => {
+const Signup = observer(() => {
   
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [username, setUsername] = React.useState("");
+  const signupStore = useLocalStore(() => rootStore.signupStore);
 
    /*** Object is sent to backend, fetch API works *****/
    const signupHandler = async () => {
-    try {
-      const signupData = {
-        username: username,
-        email: email,
-        password: password,
-      };
-      const response = await axios.post('http://192.168.0.106:5000/signup', signupData, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        withCredentials: true,
-      });
-  
-      console.log('Signup response:', response.data);
-    } catch (error) {
-      console.error('Error during signup:', error);
-    }
+    await signupStore.signup();
   };
   
   return (
@@ -164,7 +149,7 @@ const Signup = () => {
             placeholderTextColor={"lightgray"}
             underlineColorAndroid={"transparent"}
             value = {username}
-            onChangeText = {(text) => setUsername(text)}
+            onChangeText={(text) => signupStore.setUsername(text)}
           />
         </View>
         <View style={[styles.email, styles.emailPosition]}>
@@ -183,7 +168,7 @@ const Signup = () => {
             placeholderTextColor={"lightgray"}
             underlineColorAndroid={"transparent"}
             value = {email}
-            onChangeText={(text) => setEmail(text)}
+            onChangeText={(text) => signupStore.setEmail(text)}
           />
         </View>
         <View style={[styles.password, styles.emailPosition]}>
@@ -207,8 +192,8 @@ const Signup = () => {
             placeholderTextColor={"lightgray"}
             underlineColorAndroid={"transparent"}
             value = {password}
-            onChangeText = {(text) => setPassword(text)}
-            secureTextEntry = {true}
+            onChangeText={(text) => signupStore.setPassword(text)}
+            secureTextEntry
           />
         </View>
         <View style={[styles.confirmpassword, styles.emailPosition]}>
@@ -234,8 +219,10 @@ const Signup = () => {
           />
         </View>
       </View>
+      {/* Loading indicator */}
+      {signupStore.isLoading && <ActivityIndicator size="large" color="#0000ff" />}
     </View>
   );
-};
+});
 
 export default Signup;
